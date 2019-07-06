@@ -42,15 +42,22 @@ export class AtmMachine extends Component {
 
     render(){
         return(
-            <div className="atmMachine">                
-                <h1>Welcome to ATM</h1>
+            <div className="atmMachine ui centered card">  
+             <div class="content">
+                <div class="header">Welcome to ATM</div>
+             </div>               
+             <div class="content">
                 <label>Enter The Amount</label>
                 <br/><br/>
-                <form onSubmit={this.handleClick}>
-                    <input type="text" onChange={this.handleAmount} />
-                    <br/><br/>
-                    <input type="submit" value="Get Money"/>
-                </form>    
+                <form onSubmit={this.handleClick}  class="ui form">
+                    <div className="field">
+                        <input type="text" className="atmAmountField" onChange={this.handleAmount} />
+                        </div>
+                        <div className="field">
+                        <button type="submit" className="fluid ui primary button">Get Money</button>
+                    </div>                    
+                </form>           
+                </div>                  
             </div>
         )
     }
