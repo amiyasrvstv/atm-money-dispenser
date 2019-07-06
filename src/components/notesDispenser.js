@@ -8,8 +8,8 @@ export class NotesDispenser extends Component {
       calculateDispense() {
         let totalNotes = 0;
         let output = this.props.getBreakup.sort((a, b) => a.denomination - b.denomination).map((note, index) => (            
-            <tr>
-                <td key={index}>{note.notes} notes of Rs {note.denomination} <span style={{display: 'none'}}>{totalNotes += note.notes}</span></td>            
+            <tr key={index}>
+                <td>{note.notes} notes of Rs {note.denomination} <span style={{display: 'none'}}>{totalNotes += note.notes}</span></td>            
             </tr>
         ))
         return { output, totalNotes };
@@ -19,13 +19,19 @@ export class NotesDispenser extends Component {
         if (this.props.getBreakup) {            
             let { output, totalNotes } = this.calculateDispense();
             return (
-                <table class="ui very basic table">
-                    <thead>      
-                        <th>You will get following amount</th>
+                <div>
+                <table className="ui very basic table">
+                    <thead> 
+                        <tr>
+                            <th>You will get following amount</th>
+                        </tr>
                     </thead>
+                    <tbody>                    
                     { output }                    
-                    <h3>Total notes dispensed: { totalNotes }</h3>
+                    </tbody>
                 </table>
+                    <h3>Total notes dispensed: { totalNotes }</h3>
+                </div>
             );
             }
           return (

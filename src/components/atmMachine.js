@@ -4,7 +4,8 @@ import './atmMachine.css'
 export class AtmMachine extends Component {
 
     state = {
-        notes: []
+        notes: [],
+        value: '',
     };
 
     constructor(props) {
@@ -36,20 +37,20 @@ export class AtmMachine extends Component {
         this.updateParent()    
     }
 
-    handleAmount = (e) =>{        
-        this.state = { value: e.target.value };        
+    handleAmount = (e) =>{          
+        this.setState({ value: e.target.value });               
     }
 
     render(){
         return(
             <div className="atmMachine ui centered card">  
-             <div class="content">
-                <div class="header">Welcome to ATM</div>
+             <div className="content">
+                <div className="header">Welcome to ATM</div>
              </div>               
-             <div class="content">
+             <div className="content">
                 <label>Enter The Amount</label>
                 <br/><br/>
-                <form onSubmit={this.handleClick}  class="ui form">
+                <form onSubmit={this.handleClick}  className="ui form">
                     <div className="field">
                         <input type="text" className="atmAmountField" onChange={this.handleAmount} />
                         </div>

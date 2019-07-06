@@ -19,12 +19,12 @@ class App extends React.Component {
       <div className="App">          
         <Header heading={'ATM Money Dispenser'}></Header>
         <div className="ui equal width padded grid">          
-          <div class="row">
-            <div class="column">
+          <div className="row">
+            <div className="column">
               <AtmMachine getAmount={(amount) => this.setAmount(amount)}></AtmMachine>
             </div>
-            <div class="column">
-              <NotesDispenser getBreakup={ this.state.amount }></NotesDispenser>
+            <div className="column">              
+              <NotesDispenser getBreakup={ this.state.amount }></NotesDispenser>              
             </div>
           </div>
         </div>
