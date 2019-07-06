@@ -46,8 +46,9 @@ export class AtmMachine extends Component {
             <div className="atmMachine ui centered card">  
              <div className="content">
                 <div className="header">Welcome to ATM</div>
-             </div>               
+             </div>                            
              <div className="content">
+             <br />
                 <label>Enter The Amount</label>
                 <br/><br/>
                 <form onSubmit={this.handleClick}  className="ui form">
