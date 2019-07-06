@@ -1,56 +1,56 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './atmMachine.css'
 
-export class AtmMachine extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            notesNumber: []
-        };
-      }
-    denomArr = [2000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+export class AtmMachine extends Component {
 
-    passToParent = () => {
-        this.props.getAmount(this.state.notesNumber);
+    state = {
+        notes: []
+    };
+
+    constructor(props) {
+        super(props);        
     }
 
-    handleClick = (e) => {
+    denominations = [2000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+
+    updateParent = () => {
+        this.props.getAmount(this.state.notes);
+    }
+
+    handleClick = async (e) => {
         e.preventDefault();
         let amountLeft =  this.state.value;
-        var notes = 0;
-        var notesArr = [];
-        this.denomArr.forEach(deno => {
-            if (amountLeft >= deno) {
-                notes = amountLeft / deno;
-                amountLeft = amountLeft % deno;
+        let notes = 0;
+        let notesArr = [];
+        this.denominations.forEach(amount => {
+            if (amountLeft >= amount) {
+                notes = amountLeft / amount;
+                amountLeft = amountLeft % amount;
                 notesArr.push({
-                    denomination: deno,
+                    denomination: amount,
                     notes: Math.floor(notes)
                 })
             }
-        });
-        this.setState({notesNumber: notesArr})
-        this.passToParent()    
+        });        
+        await this.setState({ notes: notesArr })
+        this.updateParent()    
     }
 
-    handleTextBox = (e) =>{        
-        this.setState({ value: e.target.value }); 
+    handleAmount = (e) =>{        
+        this.state = { value: e.target.value };        
     }
 
     render(){
         return(
-            <div className="atmMoney">
-                <div className="inneratmmoney">
-                    <h1>Welcome to ATM</h1>
-                    <label>Enter The Amount</label>
+            <div className="atmMachine">                
+                <h1>Welcome to ATM</h1>
+                <label>Enter The Amount</label>
+                <br/><br/>
+                <form onSubmit={this.handleClick}>
+                    <input type="text" onChange={this.handleAmount} />
                     <br/><br/>
-                    <form onSubmit={this.handleClick}>
-                        <input type="text" onChange={this.handleTextBox} />
-                        <br/><br/>
-                        <input type="submit" value="Get Money"/>
-                    </form>    
-                </div>
-                
+                    <input type="submit" value="Get Money"/>
+                </form>    
             </div>
         )
     }

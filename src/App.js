@@ -7,19 +7,21 @@ import { NotesDispenser } from './components/notesDispenser';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { notes: 0 };
+    this.state = { notes: 0, amount: 0 };
   }
   
   setAmount = (amount) => {
-    this.setState({ notesFromAtm: amount });
+    this.setState({ amount });
   }
 
   render() {
     return (
       <div className="App">          
         <Header heading={'ATM Money Dispenser'}></Header>
+        <div style={{display:'flex', flexDirection:'row'}}>
         <AtmMachine getAmount={(amount) => this.setAmount(amount)}></AtmMachine>
-        <NotesDispenser></NotesDispenser>
+          <NotesDispenser getBreakup={ this.state.amount }></NotesDispenser>
+        </div>
       </div>
     );
   }
